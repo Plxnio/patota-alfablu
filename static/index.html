@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patota Alfablu - Gestão de Pelada</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <img src="/static/assets/alfablu_logo.png" class="header-icon" alt="Logo Patota">
+        <h1>PATOTA ALFABLU</h1>
+    </div>
+
+    <div class="guest-section">
+        <div class="guest-form">
+            <input type="text" id="guestName" placeholder="Nome do Convidado">
+            <select id="guestSkill">
+                <option value="1">⭐ 1</option>
+                <option value="2">⭐ 2</option>
+                <option value="3" selected>⭐ 3</option>
+                <option value="4">⭐ 4</option>
+                <option value="5">⭐ 5</option>
+            </select>
+            <select id="guestPosition">
+                <option value="GOL">GOL</option>
+                <option value="ZAG">ZAG</option>
+                <option value="LD">LD</option>
+                <option value="LE">LE</option>
+                <option value="MC" selected>MC</option>
+                <option value="PD/PE">PD/PE</option>
+                <option value="ATA">ATA</option>
+            </select>
+            <button class="btn-add-guest" onclick="addGuest()">+ CONVIDADO</button>
+        </div>
+    </div>
+
+    <div class="setup">
+        <div class="setup-group">
+            <b>Formação:</b>
+            <span id="formationDisplay" class="fmt-warn">Selecione</span>
+        </div>
+
+        <div class="setup-inputs">
+            <input list="playersList" id="inputBirthday" placeholder="Aniversariante...">
+            <datalist id="playersList"></datalist>
+
+            <select id="inputLocation">
+                <option value="Xepa">Local: Xepa</option>
+                <option value="Alex">Local: Alex</option>
+            </select>
+        </div>
+
+        <div class="setup-group">
+            <b>Presença:</b> <b id="total" style="color:#0154ac; font-size: 1.2rem;">0</b> <small>/ 30</small>
+        </div>
+    </div>
+
+    <div id="grid" class="players-grid"></div>
+
+    <button id="btnGenerate" onclick="generate()" disabled>GERAR TIMES EQUILIBRADOS</button>
+
+    <div class="results" id="resultsArea" style="display:none;">
+        <div class="team-box roster-box">
+            <div class="team-h blue">TIME AZUL</div>
+            <div id="t1"></div>
+        </div>
+
+        <div class="team-box roster-box">
+            <div class="team-h gray">TIME BRANCO</div>
+            <div id="t2"></div>
+        </div>
+
+        <div class="team-box stats-box" id="statsArea">
+            <div class="team-h black">CONFRONTO</div>
+            <div id="matchDate" class="match-date"></div>
+            <div id="matchTitle" class="match-info"></div>
+            <div id="matchLocation" class="match-info" style="font-size: 12px; color: #64748b; padding-top: 0;"></div>
+            <table class="stats-table">
+                <thead>
+                    <tr><th> -- </th><th style="color:#0154ac">Azul</th><th style="color:#64748b">Branco</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Idade</strong></td><td id="avgAge1">-</td><td id="avgAge2">-</td></tr>
+                    <tr><td><strong>Força</strong></td><td id="avgSkill1" style="font-weight: 700; color: #10b981;">-</td><td id="avgSkill2" style="font-weight: 700; color: #10b981;">-</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="editModal" class="modal-overlay">
+        <div class="modal-card">
+            <h3 id="editPlayerTitle">Editar Cadastro</h3>
+            <div class="modal-body">
+                <label>Idade:</label>
+                <input type="number" id="editAge">
+                
+                <label>Estrelas (Skill):</label>
+                <select id="editSkill">
+                    <option value="1">⭐ 1</option>
+                    <option value="2">⭐ 2</option>
+                    <option value="3">⭐ 3</option>
+                    <option value="4">⭐ 4</option>
+                    <option value="5">⭐ 5</option>
+                </select>
+
+                <label>Posição Primária:</label>
+                <select id="editPrimaryPos" onchange="renderAltPositions()"></select>
+                
+                <label>Posições Alternativas:</label>
+                <div id="altPositionsGrid" class="alt-positions-grid"></div>
+            </div>
+            <div class="modal-actions">
+                <button onclick="saveEdit()" class="btn-save">Salvar</button>
+                <button onclick="closeEditModal()" class="btn-cancel">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="/static/index.js"></script>
+</body>
+</html>
