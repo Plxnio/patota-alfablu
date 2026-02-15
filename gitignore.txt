@@ -6,7 +6,6 @@ run_app.py
 build/
 dist/
 env/
-.venv/
-env/
+.env
 players.json
 *.spec

@@ -2,7 +2,7 @@
 let players = [];
 let guests = []; 
 let editingPlayerName = null;
-const allPosOptions = ["GOL", "ZAG", "LD", "LE", "MC", "PD/PE", "ATA"];
+const allPosOptions = ["GOL", "ZAG", "LD", "LE", "VOL","MEI", "PD/PE", "ATA"];
 
 // Ao carregar a página, busca os dados do servidor
 async function loadPlayers() {
