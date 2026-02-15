@@ -5,4 +5,8 @@ ligar_patota.bat
 run_app.py
 build/
 dist/
+env/
+.venv/
+env/
+players.json
 *.spec
